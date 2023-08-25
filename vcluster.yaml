@@ -1,17 +1,34 @@
 apiVersion: management.loft.sh/v1
 kind: VirtualClusterInstance
 metadata:
-  name: my-vcluster
+  name: crd-vcluster
   namespace: loft-p-default
   labels:
+    app.kubernetes.io/instance: keycloak-tenant
     loft.sh/import-argocd: 'true'
+  annotations:
+    loft.sh/preserve-namespace-on-deletion: 'true'
 spec:
+  displayName: crd-vcluster
   owner:
     user: admin
-  template:
-    helmRelease:
-      values: |-
-        sync:
-          ingresses:
-            enabled: true
-
+  templateRef:
+    name: isolated-vcluster
+  clusterRef:
+    cluster: eu-cluster
+    namespace: keycloak
+    virtualCluster: crd-vcluster
+  access:
+    - name: instance-admin-access
+      verbs:
+        - create
+        - use
+        - get
+        - update
+        - delete
+        - patch
+      subresources:
+        - logs
+        - kubeconfig
+      teams:
+        - sales
