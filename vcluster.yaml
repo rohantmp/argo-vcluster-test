@@ -1,0 +1,15 @@
+apiVersion: management.loft.sh/v1
+kind: VirtualClusterInstance
+metadata:
+  name: my-vcluster
+  namespace: loft-p-default
+  labels:
+    loft.sh/import-argocd: 'true'
+spec:
+  template:
+    helmRelease:
+      values: |-
+        sync:
+          ingresses:
+            enabled: true
+
