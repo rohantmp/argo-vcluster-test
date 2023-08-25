@@ -6,6 +6,8 @@ metadata:
   labels:
     loft.sh/import-argocd: 'true'
 spec:
+  owner:
+    user: admin
   template:
     helmRelease:
       values: |-
