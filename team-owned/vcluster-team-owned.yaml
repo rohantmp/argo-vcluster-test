@@ -1,0 +1,16 @@
+apiVersion: management.loft.sh/v1
+kind: VirtualClusterInstance
+metadata:
+  name: crd-vcluster-2
+  namespace: loft-p-default
+  labels:
+    app.kubernetes.io/instance: keycloak-tenant
+    loft.sh/import-argocd: 'true'
+  annotations:
+    loft.sh/preserve-namespace-on-deletion: 'true'
+spec:
+  displayName: crd-vcluster
+  owner:
+    team: my-team
+  templateRef:
+    name: isolated-vcluster
