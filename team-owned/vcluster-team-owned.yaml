@@ -1,8 +1,8 @@
 apiVersion: management.loft.sh/v1
 kind: VirtualClusterInstance
 metadata:
-  name: crd-vcluster-2
-  namespace: loft-p-default
+  name: team-owned-vcluster
+  namespace: loft-p-my-project
   labels:
     app.kubernetes.io/instance: keycloak-tenant
     loft.sh/import-argocd: 'true'
